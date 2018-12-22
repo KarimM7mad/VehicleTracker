@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">VehicleTracker</string>
+    <string name="title_activity_receiver_maps">ReceiverMap</string>
+    <string name="title_activity_transmiter_maps">TransmiterMap</string>
+    <string name="in_car">In Car</string>
+    <string name="in_hand">In Hand</string>
+    <string name="choose_desired_need">Choose Desired Need</string>
 </resources>

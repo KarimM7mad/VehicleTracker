@@ -24,14 +24,15 @@ public class DBAdapter {
     // [TO_DO_A2]
     // TODO: Change the field names (column names) of your table
 
-    public static final String KEY_JSONkey = "key";
+    public static final String KEY_JSONKEY_NAME = "keyy";
+
     // [TO_DO_A3]
     // Update the field numbers here (0 = KEY_ROWID, 1=...)
-    public static final int COL_JSONkey = 1;
+    public static final int COL_JSONKEY_NAME = 1;
 
     // [TO_DO_A4]
     // Update the ALL-KEYS string array
-    public static final String[] ALL_KEYS = new String[]{KEY_ROWID, KEY_JSONkey};
+    public static final String[] ALL_KEYS = new String[]{KEY_ROWID, KEY_JSONKEY_NAME};
 
     // [TO_DO_A5]
     // DB info: db name and table name.
@@ -45,9 +46,10 @@ public class DBAdapter {
 
     // [TO_DO_A7]
     // DATABASE_CREATE SQL command
-    private static final String DATABASE_CREATE_SQL = "create table " + DATABASE_TABLE + "("
-            + KEY_ROWID + " integer primary key autoincrement,"
-            + KEY_JSONkey + "text not null" + ");";
+    private static final String DATABASE_CREATE_SQL =
+            "create table " + DATABASE_TABLE
+                    + " (" + KEY_ROWID + " integer primary key autoincrement, "
+                    + KEY_JSONKEY_NAME + " text not null);";
 
     // Context of application who uses us.
     private final Context context;
@@ -76,13 +78,13 @@ public class DBAdapter {
     }
 
     // Add a new set of values to the database.
-    public long insertRow(String JSONkey) {
+    public long insertRow(String keyStr) {
         // [TO_DO_A8]
         // Update data in the row with new fields.
         // Also change the function's arguments to be what you need!
         // Create row's data:
         ContentValues initialValues = new ContentValues();
-        initialValues.put(KEY_JSONkey, JSONkey);
+        initialValues.put(KEY_JSONKEY_NAME, keyStr);
 
         // Insert it into the database.
         return db.insert(DATABASE_TABLE, null, initialValues);
@@ -120,7 +122,8 @@ public class DBAdapter {
     // Get a specific row (by rowId)
     public Cursor getRow(long rowId) {
         String where = KEY_ROWID + "=" + rowId;
-        Cursor c = db.query(true, DATABASE_TABLE, ALL_KEYS, where, null, null, null, null, null);
+        Cursor c = db.query(true, DATABASE_TABLE, ALL_KEYS,
+                where, null, null, null, null, null);
         if (c != null) {
             c.moveToFirst();
         }
@@ -128,7 +131,7 @@ public class DBAdapter {
     }
 
     // Change an existing row to be equal to new data.
-    public boolean updateRow(long rowId, String name) {
+    public boolean updateRow(long rowId, String keyStr) {
         String where = KEY_ROWID + "=" + rowId;
 
         // [TO_DO_A8]
@@ -136,7 +139,7 @@ public class DBAdapter {
         // Also change the function's arguments to be what you need!
         // Create row's data:
         ContentValues newValues = new ContentValues();
-        newValues.put(KEY_JSONkey, name);
+        newValues.put(KEY_JSONKEY_NAME, keyStr);
         // Insert it into the database.
         return db.update(DATABASE_TABLE, newValues, where, null) != 0;
     }
