@@ -28,7 +28,7 @@ public class ReceiverForm extends AppCompatActivity {
     public DBAdapter localDBman;
 
     public Intent goToReceiverMapIntent;
-    AlertDialog.Builder builder = null;
+    public AlertDialog.Builder builder = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +46,7 @@ public class ReceiverForm extends AppCompatActivity {
         this.carColorEditTxt = findViewById(R.id.carColorEditTxt);
         this.numForCarToCallEditText = findViewById(R.id.numForCarTocallEditTxt);
         //submit btns
-        this.submitBtn = findViewById(R.id.submitBtn);
-        this.localDBman = new DBAdapter(this);
-        this.localDBman.open();
+        this.submitBtn = findViewById(R.id.submitBtnRe);
         this.submitBtn.setOnClickListener(new View.OnClickListener() {
             ArrayList<String> prevMailsBuffer = new ArrayList<>();
             @Override
@@ -87,6 +85,10 @@ public class ReceiverForm extends AppCompatActivity {
                     firebaseDBMan.child(carID).setValue(carToSave);
                     firebaseDBMan = firebaseDBMan.getRoot();
                     showPopUp(carID);
+
+                    localDBman = new DBAdapter(getBaseContext());
+                    localDBman.open();
+                    localDBman.deleteAll();
                     localDBman.insertRow("USER_" + userID);
                     localDBman.close();
                     goToReceiverMapIntent.putExtra("userkey",userID);

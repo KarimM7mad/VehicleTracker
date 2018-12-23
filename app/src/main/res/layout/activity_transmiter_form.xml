@@ -7,16 +7,81 @@
     tools:context=".TransmiterForm">
 
 
-
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="80dp"
-        android:text="Transmiter"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="53dp"
+        android:gravity="center"
+        android:text="Fill The Form"
         android:textSize="30dp" />
 
+
+    <EditText
+        android:id="@+id/userEditTxtTr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="90dp"
+        android:layout_marginBottom="374dp"
+        android:ems="10"
+        android:hint="User Key"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/keyEditTxtTr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="204dp"
+        android:ems="10"
+        android:hint="Car Key"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/submitBtnTr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="56dp"
+        android:text="submit"
+
+        />
+
+    <Button
+        android:id="@+id/checkUserBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userEditTxtTr"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="-357dp"
+        android:text="check User"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/checkCarBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/keyEditTxtTr"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-204dp"
+        android:text="check Car"
+        android:textAllCaps="false" />
+
+    <ProgressBar
+        android:id="@+id/determinateBar"
+        style="@android:style/Widget.Material.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="530dp"
+        android:layout_marginEnd="25dp"
+        android:progress="100" />
 
 </RelativeLayout>

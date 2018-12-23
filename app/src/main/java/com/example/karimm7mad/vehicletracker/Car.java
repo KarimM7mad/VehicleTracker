@@ -8,6 +8,7 @@ public class Car {
     public String numToCall;
     public float currentLatitude;
     public float currentLongitude;
+    public boolean isCarMoving;
 
     public Car() {
     }
@@ -19,6 +20,7 @@ public class Car {
         this.numToCall = numToCall;
         this.currentLatitude = currentLatitude;
         this.currentLongitude = currentLongitude;
+        this.isCarMoving = false;
     }
     
     @Override

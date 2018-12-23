@@ -43,7 +43,12 @@
             android:label="@string/title_activity_transmiter_maps" />
         <activity android:name=".PhoneStateActivity" />
         <activity android:name=".TransmiterForm" />
-        <activity android:name=".ReceiverForm"></activity>
+        <activity android:name=".ReceiverForm" />
+
+        <service
+            android:name=".audioService"
+            android:enabled="true"
+            android:exported="false"></service>
     </application>
 
 </manifest>

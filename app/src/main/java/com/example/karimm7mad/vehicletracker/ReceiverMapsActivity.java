@@ -27,15 +27,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ReceiverMapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
+public class ReceiverMapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     public static final String TAG = "asdasd";
     private GoogleMap mMap;
     public String firebaseKeyToUse;
     public DatabaseReference firebaseDBman;
     public LatLng obtained;
-    public LocationManager lMan;
-    public Criteria currLocCriteria;
+    public LocationManager lMan = null;
+    public Criteria currLocCriteria = null;
 
     public final static int ReqNo = 900;
 
@@ -50,43 +50,8 @@ public class ReceiverMapsActivity extends FragmentActivity implements OnMapReady
         mapFragment.getMapAsync(this);
         this.lMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         this.defineCurrLocCriteria();
-        this.getThePermission();
-
-
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        this.firebaseDBman.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                mMap.clear();
-                if (ActivityCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                        && ActivityCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                Location currLoc = lMan.getLastKnownLocation(lMan.getBestProvider(currLocCriteria, false));
-                for (DataSnapshot dn : dataSnapshot.getChildren()) {
-                    Car c = dn.getValue(Car.class);
-                    Log.d(TAG, "onDataChange:\n" + c);
-                    // Add a marker in Sydney and move the camera
-                    obtained = new LatLng(c.currentLatitude, c.currentLongitude);
-                    mMap.addMarker(new MarkerOptions().position(obtained).title(c.name));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(obtained));
-                }
-
-
-            }
-
-
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
 
     public void defineCurrLocCriteria() {
         this.currLocCriteria = new Criteria();
@@ -99,9 +64,12 @@ public class ReceiverMapsActivity extends FragmentActivity implements OnMapReady
     }
 
 
-    public void getThePermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+    public boolean hasPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+            return true;
+        else {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, ReceiverMapsActivity.ReqNo);
+            return false;
         }
     }
 
@@ -109,40 +77,45 @@ public class ReceiverMapsActivity extends FragmentActivity implements OnMapReady
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case ReceiverMapsActivity.ReqNo:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    this.lMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                    this.defineCurrLocCriteria();
                     Toast.makeText(getBaseContext(), "ACCESS GRANTED, It's OK now", Toast.LENGTH_SHORT).show();
-                else
+                } else
                     Toast.makeText(getBaseContext(), "ACCESS DENIED, Allow Location Access", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
 
+
     // ON MAP READY CALL BACK INTERFACE FUNCTION
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        this.firebaseDBman.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mMap.clear();
+                if (hasPermission()) {
+                    for (DataSnapshot dn : dataSnapshot.getChildren()) {
+                        Car c = dn.getValue(Car.class);
+                        Log.d(TAG, "onDataChange:\n" + c);
+                        // Add a marker in Sydney and move the camera
+                        obtained = new LatLng(c.currentLatitude, c.currentLongitude);
+                        mMap.addMarker(new MarkerOptions().position(obtained).title(c.name));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(obtained));
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
     }
 
-    //LOCATION LISTENER INTERFACE FUNCTIONS
-    @Override
-    public void onLocationChanged(Location location) {
 
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
 }
