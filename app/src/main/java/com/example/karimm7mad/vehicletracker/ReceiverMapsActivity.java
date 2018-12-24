@@ -36,7 +36,7 @@ public class ReceiverMapsActivity extends FragmentActivity implements OnMapReady
     private GoogleMap mMap;
     public String firebaseKeyToUse;
     public DatabaseReference firebaseDBman;
-    public LatLng lastLocationRecieved;
+    public Location lastLocationRecieved;
     public LocationManager lMan = null;
     public Criteria currLocCriteria = null;
     public Intent triggerAlarmService;
@@ -52,10 +52,41 @@ public class ReceiverMapsActivity extends FragmentActivity implements OnMapReady
         this.alarmONOFF = findViewById(R.id.alarmONOFF);
         this.firebaseKeyToUse = this.getIntent().getStringExtra("userkey");
         this.firebaseDBman = FirebaseDatabase.getInstance().getReference("Cars").child(this.firebaseKeyToUse);
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-        this.lMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        this.defineCurrLocCriteria();
+        if (hasPermission()) {
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+            mapFragment.getMapAsync(this);
+            this.lMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            this.defineCurrLocCriteria();
+
+            this.firebaseDBman.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    mMap.clear();
+                    if (hasPermission()) {
+                        for (DataSnapshot dn : dataSnapshot.getChildren()) {
+                            Car c = dn.getValue(Car.class);
+                            Log.d(TAG, "onDataChange:\n" + c);
+
+                            lastLocationRecieved = new Location(lMan.GPS_PROVIDER);
+                            lastLocationRecieved.setLatitude(c.currentLatitude);
+                            lastLocationRecieved.setLongitude(c.currentLongitude);
+
+                            LatLng tmpPos = new LatLng(lastLocationRecieved.getLatitude(), lastLocationRecieved.getLongitude());
+
+                            mMap.addMarker(new MarkerOptions().position(tmpPos).title(c.name));
+                            mMap.moveCamera(CameraUpdateFactory.newLatLng(tmpPos));
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+
+
     }
 
     public void defineCurrLocCriteria() {
@@ -83,11 +114,9 @@ public class ReceiverMapsActivity extends FragmentActivity implements OnMapReady
         switch (requestCode) {
             case ReceiverMapsActivity.ReqNo:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    this.lMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                    this.defineCurrLocCriteria();
-                    Toast.makeText(getBaseContext(), "ACCESS GRANTED, It's OK now", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "ACCESS GRANTED", Toast.LENGTH_SHORT).show();
                 } else
-                    Toast.makeText(getBaseContext(), "ACCESS DENIED, Allow Location Access OR Delete The app", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "ACCESS DENIED", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -95,53 +124,62 @@ public class ReceiverMapsActivity extends FragmentActivity implements OnMapReady
     // ON MAP READY CALL BACK INTERFACE FUNCTION
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
         this.alarmONOFF.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    Toast.makeText(getBaseContext(), "alarmONOFF true", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "alarm ON", Toast.LENGTH_SHORT).show();
                     audioService.notified = false;
                 } else {
-                    Toast.makeText(getBaseContext(), "alarmONOFF false", Toast.LENGTH_SHORT).show();
-                    raiseAlarm = false;
+                    Toast.makeText(getBaseContext(), "alarmON", Toast.LENGTH_SHORT).show();
+                    audioService.notified = true;
+                    stopService(triggerAlarmService);
                 }
             }
         });
 
+        if (hasPermission()) {
+            mMap = googleMap;
+            mMap.setMyLocationEnabled(true);
+            mMap.getUiSettings().setMyLocationButtonEnabled(true);
+            this.firebaseDBman.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    mMap.clear();
+                    if (hasPermission()) {
+                        for (DataSnapshot dn : dataSnapshot.getChildren()) {
+                            Car c = dn.getValue(Car.class);
+                            Log.d(TAG, "onDataChange:\n" + c);
 
-        this.firebaseDBman.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                mMap.clear();
-                if (hasPermission()) {
-                    for (DataSnapshot dn : dataSnapshot.getChildren()) {
-                        Car c = dn.getValue(Car.class);
-                        Log.d(TAG, "onDataChange:\n" + c);
-                        lastLocationRecieved = new LatLng(c.currentLatitude, c.currentLongitude);
-                        mMap.addMarker(new MarkerOptions().position(lastLocationRecieved).title(c.name));
-                        mMap.moveCamera(CameraUpdateFactory.newLatLng(lastLocationRecieved));
-                        if (c.isCarMoving && !audioService.notified) {
-                            startService(triggerAlarmService);
+                            lastLocationRecieved = new Location(lMan.GPS_PROVIDER);
+                            lastLocationRecieved.setLatitude(c.currentLatitude);
+                            lastLocationRecieved.setLongitude(c.currentLongitude);
+
+                            LatLng tmpPos = new LatLng(lastLocationRecieved.getLatitude(), lastLocationRecieved.getLongitude());
+
+                            mMap.addMarker(new MarkerOptions().position(tmpPos).title(c.name));
+                            mMap.moveCamera(CameraUpdateFactory.newLatLng(tmpPos));
+
+
+                            if (c.isCarMoving && !audioService.notified) {
+                                startService(triggerAlarmService);
+                            }
                         }
                     }
                 }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
-
+                }
+            });
+        }
 
     }
 
 
     @Override
     public void onLocationChanged(Location location) {
-
-
 
     }
 

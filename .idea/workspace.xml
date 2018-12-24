@@ -39,16 +39,15 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/PhoneStateActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/PhoneStateActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/ReceiverForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/ReceiverForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/ReceiverMapsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/ReceiverMapsActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/TransmiterForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/TransmiterForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/TransmiterMapsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/TransmiterMapsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/WelcomeScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/WelcomeScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/Userr.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/Userr.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/audioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/audioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_receiver_maps.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_receiver_maps.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_transmiter_form.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_transmiter_form.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_transmiter_maps.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_transmiter_maps.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -81,16 +80,68 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TransmiterMapsActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TransmiterMapsActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/TransmiterMapsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="155" column="70" lean-forward="true" selection-start-line="155" selection-start-column="70" selection-end-line="155" selection-end-column="70" />
+            <state relative-caret-position="-40">
+              <caret line="141" column="85" selection-start-line="141" selection-start-column="85" selection-end-line="141" selection-end-column="85" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#viewLocationOnMap#0;class#TransmiterMapsActivity#0" />
-                <element signature="method#onResume#0;class#TransmiterMapsActivity#0" />
-                <element signature="method#onBackPressed#0;class#TransmiterMapsActivity#0" />
+                <element signature="e#4166#5515#0" expanded="true" />
+                <element signature="e#5514#5515#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Userr.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/Userr.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
+              <folding>
+                <element signature="method#Userr#1;class#Userr#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReceiverForm.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/ReceiverForm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="103" column="39" lean-forward="true" selection-start-line="103" selection-start-column="39" selection-end-line="103" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4692#5255#0" expanded="true" />
+                <element signature="e#5254#5255#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReceiverMapsActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/ReceiverMapsActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="460">
+              <caret line="161" selection-start-line="161" selection-end-line="161" />
+              <folding>
+                <element signature="method#onCreate#0;class#ReceiverMapsActivity#0" />
+                <element signature="method#defineCurrLocCriteria#0;class#ReceiverMapsActivity#0" />
+                <element signature="method#hasPermission#0;class#ReceiverMapsActivity#0" />
+                <element signature="method#onRequestPermissionsResult#0;class#ReceiverMapsActivity#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TransmiterForm.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/TransmiterForm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="194">
+              <caret line="177" column="53" selection-start-line="177" selection-start-column="53" selection-end-line="177" selection-end-column="53" />
+              <folding>
+                <element signature="method#showPopUp#0;class#TransmiterForm#0" />
               </folding>
             </state>
           </provider>
@@ -109,6 +160,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>setF</find>
+      <find>raiseAlarm</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -2415,28 +2467,28 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_phone_state.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/PhoneStateActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/Car.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_receiver_form.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/Userr.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/circular_progress_bar.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_transmiter_maps.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_receiver_maps.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/TransmiterForm.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/WelcomeScreen.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_transmiter_form.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/PhoneStateActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/Car.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/Userr.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/audioService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_transmiter_form.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/TransmiterForm.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/ReceiverForm.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/TransmiterMapsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/ReceiverMapsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/ReceiverForm.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-1" />
-    <option name="y" value="-11" />
+    <option name="y" value="-4" />
     <option name="width" value="1922" />
-    <option name="height" value="1045" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -2490,7 +2542,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
-    <property name="device.picker.selection" value="FUPFMNSK4TTS9LNR" />
+    <property name="device.picker.selection" value="emuPhone" />
     <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RecentsManager">
@@ -2627,7 +2679,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="-11" width="1922" height="1045" extended-state="6" />
+    <frame x="-1" y="-4" width="1922" height="1038" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="1" />
@@ -2640,13 +2692,13 @@
       <window_info anchor="right" id="Preview" order="0" weight="0.32977587" />
       <window_info anchor="bottom" id="Run" order="8" />
       <window_info anchor="bottom" id="Version Control" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="5" weight="0.32996634" />
+      <window_info anchor="bottom" id="Terminal" order="5" weight="0.3289183" />
       <window_info anchor="bottom" id="Logcat" order="4" sideWeight="0.4994664" weight="0.27497193" />
       <window_info id="Captures" order="7" weight="0.25" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Designer" order="0" />
       <window_info active="true" content_ui="combo" id="Project" order="4" visible="true" weight="0.2524013" />
-      <window_info anchor="bottom" id="Build" order="0" weight="0.21885522" />
+      <window_info anchor="bottom" id="Build" order="0" weight="0.22024472" />
       <window_info anchor="right" id="Gradle" order="4" weight="0.32977587" />
       <window_info id="Structure" order="5" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Device File Explorer" order="2" side_tool="true" />
@@ -2663,7 +2715,7 @@
       <window_info anchor="bottom" id="Find" order="7" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" anchor="bottom" id="Build" order="0" visible="true" weight="0.21885522" />
+      <window_info anchor="bottom" id="Build" order="0" weight="0.22024472" />
       <window_info id="Designer" order="0" />
       <window_info id="Build Variants" order="1" side_tool="true" />
       <window_info id="Image Layers" order="6" />
@@ -2684,9 +2736,9 @@
       <window_info anchor="right" id="Assistant" order="3" weight="0.32977587" />
       <window_info anchor="bottom" id="Logcat" order="4" sideWeight="0.4994664" weight="0.27497193" />
       <window_info anchor="bottom" id="Version Control" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="5" weight="0.32996634" />
+      <window_info anchor="bottom" id="Terminal" order="5" weight="0.3289183" />
       <window_info anchor="right" id="Gradle" order="4" weight="0.32977587" />
-      <window_info content_ui="combo" id="Project" order="4" visible="true" weight="0.2524013" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" visible="true" weight="0.2524013" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="bottom" id="TODO" order="12" />
       <window_info anchor="right" id="Palette&#9;" order="9" />
@@ -2711,9 +2763,8 @@
           <caret line="91" column="16" selection-start-line="91" selection-start-column="16" selection-end-line="91" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#viewLocationOnMap#0;class#TransmiterMapsActivity#0" />
-            <element signature="method#onResume#0;class#TransmiterMapsActivity#0" />
-            <element signature="method#onBackPressed#0;class#TransmiterMapsActivity#0" />
+            <element signature="e#4166#5515#0" expanded="true" />
+            <element signature="e#5514#5515#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2878,30 +2929,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/Userr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/PhoneStateActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="48" column="31" lean-forward="true" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/Car.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-database-16.0.1.aar/81310368e4827acf616e0ae80557f329/jars/classes.jar!/com/google/firebase/database/FirebaseDatabase.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -2917,31 +2944,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/circular_progress_bar.xml" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/DBAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="82" column="21" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Android/Sdk/sources/android-28/android/location/LocationManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
           <caret line="521" column="35" lean-forward="true" selection-start-line="521" selection-start-column="35" selection-end-line="521" selection-end-column="35" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_receiver_form.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_transmiter_maps.xml">
@@ -2964,32 +2971,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_transmiter_form.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="42" column="42" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="42" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/WelcomeScreen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="496">
           <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/audioService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="26" lean-forward="true" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#871#872#0" expanded="true" />
-            <element signature="e#898#899#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3004,32 +2989,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/ReceiverForm.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/Car.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="80" column="43" selection-start-line="80" selection-start-column="43" selection-end-line="80" selection-end-column="43" />
+        <state relative-caret-position="198">
+          <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4863#5034#0" expanded="true" />
-            <element signature="e#5033#5034#0" expanded="true" />
+            <element signature="method#Car#1;class#Car#0" />
+            <element signature="method#toString#0;class#Car#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/TransmiterForm.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/audioService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="182" column="43" lean-forward="true" selection-start-line="182" selection-start-column="43" selection-end-line="182" selection-end-column="43" />
+        <state relative-caret-position="144">
+          <caret line="8" column="35" lean-forward="true" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
           <folding>
-            <element signature="method#showPopUp#0;class#TransmiterForm#0" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#880#881#0" expanded="true" />
+            <element signature="e#907#908#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/DBAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="64" column="27" lean-forward="true" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_receiver_form.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_transmiter_form.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/PhoneStateActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/TransmiterMapsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-40">
+          <caret line="141" column="85" selection-start-line="141" selection-start-column="85" selection-end-line="141" selection-end-column="85" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4166#5515#0" expanded="true" />
+            <element signature="e#5514#5515#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/ReceiverMapsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="142" lean-forward="true" selection-start-line="142" selection-end-line="142" />
+        <state relative-caret-position="460">
+          <caret line="161" selection-start-line="161" selection-end-line="161" />
           <folding>
             <element signature="method#onCreate#0;class#ReceiverMapsActivity#0" />
             <element signature="method#defineCurrLocCriteria#0;class#ReceiverMapsActivity#0" />
@@ -3039,15 +3077,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/TransmiterMapsActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/TransmiterForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="155" column="70" lean-forward="true" selection-start-line="155" selection-start-column="70" selection-end-line="155" selection-end-column="70" />
+        <state relative-caret-position="194">
+          <caret line="177" column="53" selection-start-line="177" selection-start-column="53" selection-end-line="177" selection-end-column="53" />
+          <folding>
+            <element signature="method#showPopUp#0;class#TransmiterForm#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/Userr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="method#Userr#1;class#Userr#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/karimm7mad/vehicletracker/ReceiverForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="103" column="39" lean-forward="true" selection-start-line="103" selection-start-column="39" selection-end-line="103" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#viewLocationOnMap#0;class#TransmiterMapsActivity#0" />
-            <element signature="method#onResume#0;class#TransmiterMapsActivity#0" />
-            <element signature="method#onBackPressed#0;class#TransmiterMapsActivity#0" />
+            <element signature="e#4692#5255#0" expanded="true" />
+            <element signature="e#5254#5255#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -3,17 +3,17 @@ package com.example.karimm7mad.vehicletracker;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -31,13 +31,16 @@ public class TransmiterMapsActivity extends FragmentActivity implements OnMapRea
 
     private static final String TAG = "asdasd";
     private GoogleMap mMap;
+
     public String currCarKey;
     public String currUserKey;
+
     public DatabaseReference firebaseDBman;
     public LocationManager lMan = null;
     public Criteria currLocCriteria = null;
     public Switch toggle;
     public Location lastKnownLocationOfCar;
+
     public boolean isToggleChecked;
 
 
@@ -45,16 +48,17 @@ public class TransmiterMapsActivity extends FragmentActivity implements OnMapRea
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transmiter_maps);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         this.currCarKey = this.getIntent().getStringExtra("carkey");
         this.currUserKey = this.getIntent().getStringExtra("userkey");
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
         isToggleChecked = false;
         toggle = findViewById(R.id.toggleBtn);
 
         this.firebaseDBman = FirebaseDatabase.getInstance().getReference("Cars").child(this.currUserKey).child(this.currCarKey);
 
         if (hasPermission()) {
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+            mapFragment.getMapAsync(this);
             this.lMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             this.currLocCriteria = new Criteria();
             this.lastKnownLocationOfCar = lMan.getLastKnownLocation(lMan.getBestProvider(currLocCriteria, false));
@@ -75,9 +79,6 @@ public class TransmiterMapsActivity extends FragmentActivity implements OnMapRea
         switch (requestCode) {
             case ReceiverMapsActivity.ReqNo:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    this.currLocCriteria = new Criteria();
-                    this.lMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                    this.lastKnownLocationOfCar = this.lMan.getLastKnownLocation(lMan.getBestProvider(currLocCriteria, false));
                     Toast.makeText(getBaseContext(), "ACCESS GRANTED, It's OK now", Toast.LENGTH_SHORT).show();
                 } else
                     Toast.makeText(getBaseContext(), "ACCESS DENIED, Allow Location Access", Toast.LENGTH_SHORT).show();
@@ -96,16 +97,20 @@ public class TransmiterMapsActivity extends FragmentActivity implements OnMapRea
                     if (isChecked) {
                         isToggleChecked = true;
                         Toast.makeText(getBaseContext(), "true", Toast.LENGTH_SHORT).show();
-                        mMap.setMyLocationEnabled(true);
-                        mMap.getUiSettings().setMyLocationButtonEnabled(true);
-                        Location currLocation = lMan.getLastKnownLocation(lMan.getBestProvider(currLocCriteria, true));
-                        viewLocationOnMap(currLocation);
+                        if (hasPermission()) {
+                            mMap.setMyLocationEnabled(true);
+                            mMap.getUiSettings().setMyLocationButtonEnabled(true);
+                            Location currLocation = lMan.getLastKnownLocation(lMan.getBestProvider(currLocCriteria, true));
+                            viewLocationOnMap(currLocation);
+                        }
                     } else {
-                        isToggleChecked = false;
-                        mMap.setMyLocationEnabled(false);
-                        mMap.getUiSettings().setMyLocationButtonEnabled(false);
-                        mMap.clear();
                         Toast.makeText(getBaseContext(), "False", Toast.LENGTH_SHORT).show();
+                        isToggleChecked = false;
+                        if (hasPermission()) {
+                            mMap.setMyLocationEnabled(false);
+                            mMap.getUiSettings().setMyLocationButtonEnabled(false);
+                            mMap.clear();
+                        }
                     }
 
                 } catch (Exception e) {
@@ -121,29 +126,38 @@ public class TransmiterMapsActivity extends FragmentActivity implements OnMapRea
 
     public void viewLocationOnMap(Location l) {
         mMap.clear();
+        mMap.setMyLocationEnabled(true);
+        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+
         LatLng currPosition;
         try {
             currPosition = new LatLng(l.getLatitude(), l.getLongitude());
         } catch (Exception e) {
             currPosition = new LatLng(0, 0);
         }
-        mMap.addMarker(new MarkerOptions().position(currPosition).title("Transmitter Map"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(currPosition));
-        lastKnownLocationOfCar.setLatitude(currPosition.latitude);
-        lastKnownLocationOfCar.setLongitude(currPosition.longitude);
-
+        if (hasPermission()) {
+            mMap.addMarker(new MarkerOptions().position(currPosition).title("You are Here"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(currPosition));
+            firebaseDBman.child("currentLatitude").setValue(currPosition.latitude);
+            firebaseDBman.child("currentLongitude").setValue(currPosition.longitude);
+            lastKnownLocationOfCar.setLatitude(currPosition.latitude);
+            lastKnownLocationOfCar.setLongitude(currPosition.longitude);
+        }
     }
+
     @Override
     protected void onResume() {
         super.onResume();
-        hasPermission();
-        this.lMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 300, 3, (LocationListener) this);
+        if(hasPermission())
+            this.lMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 300, 3, (LocationListener) this);
     }
+
     @Override
     public void onBackPressed() {
         this.finish();
         System.exit(0);
     }
+
     @Override
     public void onLocationChanged(Location location) {
         if (isToggleChecked) {

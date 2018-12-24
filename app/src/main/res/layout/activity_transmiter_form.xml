@@ -28,7 +28,6 @@
         android:layout_marginBottom="374dp"
         android:ems="10"
         android:hint="User Key"
-        android:text="-LUUfjH-jyyttbuwof3K"
         android:inputType="textPersonName" />
 
     <EditText
@@ -40,7 +39,6 @@
         android:layout_marginBottom="204dp"
         android:ems="10"
         android:hint="Car Key"
-        android:text="-LUUfjH5H3PFyo9i3sci"
         android:inputType="textPersonName" />
 
     <Button

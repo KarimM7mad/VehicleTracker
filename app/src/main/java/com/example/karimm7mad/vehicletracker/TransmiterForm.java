@@ -1,9 +1,16 @@
 package com.example.karimm7mad.vehicletracker;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.LocationManager;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -154,6 +161,7 @@ public class TransmiterForm extends AppCompatActivity {
         this.carkeyEditTxt = findViewById(R.id.keyEditTxtTr);
         this.carkeyEditTxt.setVisibility(View.GONE);
 
+
         this.checkCarBtn = findViewById(R.id.checkCarBtn);
         this.checkCarBtn.setClickable(false);
         this.checkCarBtn.setFocusable(false);
@@ -178,16 +186,46 @@ public class TransmiterForm extends AppCompatActivity {
                 localDBman.open();
                 localDBman.deleteAll();
                 localDBman.insertRow("CAR_" + carKeyEntered);
-                localDBman.insertRow("USER_" + carKeyEntered);
+                localDBman.insertRow("USER_" + userKeyEntered);
                 localDBman.close();
                 goToTransmitterMapIntent.putExtra("carkey", carKeyEntered);
                 goToTransmitterMapIntent.putExtra("userkey", userKeyEntered);
                 TransmiterForm.isCarExist = false;
                 TransmiterForm.isUserExist = false;
-                startActivity(goToTransmitterMapIntent);
+                if(hasPermission())
+                    startActivity(goToTransmitterMapIntent);
             }
         });
+
+        this.userkeyEditTxt.setText("-LUV5xRBZ0Xaaj4DAmoq");
+        this.carkeyEditTxt.setText("-LUV5xRTalxZx5vJ97I0");
+
     }
+
+
+    public boolean hasPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+            return true;
+        else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, ReceiverMapsActivity.ReqNo);
+            return false;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case ReceiverMapsActivity.ReqNo:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startActivity(goToTransmitterMapIntent);
+                } else
+                    Toast.makeText(getBaseContext(), "ACCESS DENIED, Allow Location Access", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
+
+
 
     public void showPopUp(String str) {
         this.builder = new AlertDialog.Builder(this);
