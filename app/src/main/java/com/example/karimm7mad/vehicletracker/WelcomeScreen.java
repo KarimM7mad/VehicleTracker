@@ -30,19 +30,29 @@ public class WelcomeScreen extends AppCompatActivity {
             // Already assigned APP
             int id = c.getInt(DBAdapter.COL_ROWID);
             String jsonKeyToUse = c.getString(DBAdapter.COL_JSONKEY_NAME);
+            //if this app is a user mode
             if (jsonKeyToUse.split("_")[0].equalsIgnoreCase("USER")) {
                 this.gotoReceiverMapIntent.putExtra("userkey", jsonKeyToUse.split("_")[1]);
                 startActivity(this.gotoReceiverMapIntent);
             }
+            //if this app is a Vehicle mode
             else if (jsonKeyToUse.split("_")[0].equalsIgnoreCase("CAR")) {
                 this.gotoTransmiterMapIntent.putExtra("carkey", jsonKeyToUse.split("_")[1]);
-                startActivity(this.gotoTransmiterMapIntent);
+                if (c.moveToNext()) {
+                    id = c.getInt(DBAdapter.COL_ROWID);
+                    jsonKeyToUse = c.getString(DBAdapter.COL_JSONKEY_NAME);
+                    if (jsonKeyToUse.split("_")[0].equalsIgnoreCase("USER")) {
+                        this.gotoTransmiterMapIntent.putExtra("userkey", jsonKeyToUse.split("_")[1]);
+                        startActivity(this.gotoTransmiterMapIntent);
+                    }
+                }
             }
         }
         else {
             // Unassigned APP
             startActivity(this.gotoPhoneStateIntent);
         }
+
     }
 
     @Override

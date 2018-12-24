@@ -51,8 +51,6 @@ public class TransmiterForm extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 loading.setProgress((int) ((4000 - millisUntilFinished) / 40));
-                carkeyEditTxt.setFocusable(false);
-                carkeyEditTxt.setClickable(false);
                 checkCarBtn.setClickable(false);
                 if (!TransmiterForm.isCarExist) {
                     userKeyEntered = userkeyEditTxt.getText().toString();
@@ -85,8 +83,8 @@ public class TransmiterForm extends AppCompatActivity {
                     submitBtn.setFocusable(true);
                     submitBtn.setVisibility(View.VISIBLE);
                 } else {
-                    carkeyEditTxt.setFocusable(true);
                     carkeyEditTxt.setClickable(true);
+                    carkeyEditTxt.setFocusable(true);
                     checkCarBtn.setClickable(true);
                     showPopUp("Car Doesn't Exist");
                 }
@@ -130,6 +128,8 @@ public class TransmiterForm extends AppCompatActivity {
                     checkCarBtn.setVisibility(View.VISIBLE);
                     checkCarBtn.setClickable(true);
                     checkCarBtn.setFocusable(true);
+                    userkeyEditTxt.setFocusable(false);
+                    userkeyEditTxt.setClickable(false);
                 } else {
                     userkeyEditTxt.setClickable(true);
                     userkeyEditTxt.setFocusable(true);
@@ -178,8 +178,10 @@ public class TransmiterForm extends AppCompatActivity {
                 localDBman.open();
                 localDBman.deleteAll();
                 localDBman.insertRow("CAR_" + carKeyEntered);
+                localDBman.insertRow("USER_" + carKeyEntered);
                 localDBman.close();
                 goToTransmitterMapIntent.putExtra("carkey", carKeyEntered);
+                goToTransmitterMapIntent.putExtra("userkey", userKeyEntered);
                 TransmiterForm.isCarExist = false;
                 TransmiterForm.isUserExist = false;
                 startActivity(goToTransmitterMapIntent);

@@ -49,6 +49,7 @@ public class ReceiverForm extends AppCompatActivity {
         this.submitBtn = findViewById(R.id.submitBtnRe);
         this.submitBtn.setOnClickListener(new View.OnClickListener() {
             ArrayList<String> prevMailsBuffer = new ArrayList<>();
+
             @Override
             public void onClick(View v) {
                 userName = userNameEditTxt.getText().toString();
@@ -84,14 +85,14 @@ public class ReceiverForm extends AppCompatActivity {
                     Car carToSave = new Car(carName, carNum, carColor, numToCall, 0, 0);
                     firebaseDBMan.child(carID).setValue(carToSave);
                     firebaseDBMan = firebaseDBMan.getRoot();
-                    showPopUp(carID);
+                    showPopUp(carID,userID);
 
                     localDBman = new DBAdapter(getBaseContext());
                     localDBman.open();
                     localDBman.deleteAll();
                     localDBman.insertRow("USER_" + userID);
                     localDBman.close();
-                    goToReceiverMapIntent.putExtra("userkey",userID);
+                    goToReceiverMapIntent.putExtra("userkey", userID);
                     startActivity(goToReceiverMapIntent);
                 } else {
                     Toast.makeText(getBaseContext(), "Check Your Data and Try Again", Toast.LENGTH_SHORT).show();
@@ -101,10 +102,10 @@ public class ReceiverForm extends AppCompatActivity {
         });
     }
 
-    public void showPopUp(String carKey) {
+    public void showPopUp(String carKey, String userkey) {
         this.builder = new AlertDialog.Builder(this);
-        this.builder.setTitle("Car Key");
-        this.builder.setMessage("Your car Key is\n\"" + carKey + "\"\nOpen the Transmiter App to add it");
+        this.builder.setTitle("Keys for Transmiter");
+        this.builder.setMessage("Car Key:\n\"" + carKey + "\"\nUser Key:\n\"" + userkey + "\"");
         this.builder.setNeutralButton("Done", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.cancel();

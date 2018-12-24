@@ -2,6 +2,7 @@ package com.example.karimm7mad.vehicletracker;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -13,6 +14,8 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -27,31 +30,33 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ReceiverMapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class ReceiverMapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
 
     public static final String TAG = "asdasd";
     private GoogleMap mMap;
     public String firebaseKeyToUse;
     public DatabaseReference firebaseDBman;
-    public LatLng obtained;
+    public LatLng lastLocationRecieved;
     public LocationManager lMan = null;
     public Criteria currLocCriteria = null;
-
+    public Intent triggerAlarmService;
+    public boolean raiseAlarm = false;
     public final static int ReqNo = 900;
+    public Switch alarmONOFF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receiver_maps);
+        this.triggerAlarmService = new Intent(ReceiverMapsActivity.this, audioService.class);
+        this.alarmONOFF = findViewById(R.id.alarmONOFF);
         this.firebaseKeyToUse = this.getIntent().getStringExtra("userkey");
         this.firebaseDBman = FirebaseDatabase.getInstance().getReference("Cars").child(this.firebaseKeyToUse);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         this.lMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         this.defineCurrLocCriteria();
     }
-
 
     public void defineCurrLocCriteria() {
         this.currLocCriteria = new Criteria();
@@ -62,7 +67,6 @@ public class ReceiverMapsActivity extends FragmentActivity implements OnMapReady
         this.currLocCriteria.setSpeedRequired(true);
         this.currLocCriteria.setCostAllowed(false);
     }
-
 
     public boolean hasPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
@@ -75,6 +79,7 @@ public class ReceiverMapsActivity extends FragmentActivity implements OnMapReady
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
         switch (requestCode) {
             case ReceiverMapsActivity.ReqNo:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -82,16 +87,29 @@ public class ReceiverMapsActivity extends FragmentActivity implements OnMapReady
                     this.defineCurrLocCriteria();
                     Toast.makeText(getBaseContext(), "ACCESS GRANTED, It's OK now", Toast.LENGTH_SHORT).show();
                 } else
-                    Toast.makeText(getBaseContext(), "ACCESS DENIED, Allow Location Access", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "ACCESS DENIED, Allow Location Access OR Delete The app", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
-
 
     // ON MAP READY CALL BACK INTERFACE FUNCTION
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        this.alarmONOFF.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Toast.makeText(getBaseContext(), "alarmONOFF true", Toast.LENGTH_SHORT).show();
+                    audioService.notified = false;
+                } else {
+                    Toast.makeText(getBaseContext(), "alarmONOFF false", Toast.LENGTH_SHORT).show();
+                    raiseAlarm = false;
+                }
+            }
+        });
+
+
         this.firebaseDBman.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -100,10 +118,12 @@ public class ReceiverMapsActivity extends FragmentActivity implements OnMapReady
                     for (DataSnapshot dn : dataSnapshot.getChildren()) {
                         Car c = dn.getValue(Car.class);
                         Log.d(TAG, "onDataChange:\n" + c);
-                        // Add a marker in Sydney and move the camera
-                        obtained = new LatLng(c.currentLatitude, c.currentLongitude);
-                        mMap.addMarker(new MarkerOptions().position(obtained).title(c.name));
-                        mMap.moveCamera(CameraUpdateFactory.newLatLng(obtained));
+                        lastLocationRecieved = new LatLng(c.currentLatitude, c.currentLongitude);
+                        mMap.addMarker(new MarkerOptions().position(lastLocationRecieved).title(c.name));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(lastLocationRecieved));
+                        if (c.isCarMoving && !audioService.notified) {
+                            startService(triggerAlarmService);
+                        }
                     }
                 }
             }
@@ -118,4 +138,25 @@ public class ReceiverMapsActivity extends FragmentActivity implements OnMapReady
     }
 
 
+    @Override
+    public void onLocationChanged(Location location) {
+
+
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
 }
