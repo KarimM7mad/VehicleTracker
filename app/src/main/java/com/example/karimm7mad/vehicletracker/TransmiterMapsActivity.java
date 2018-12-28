@@ -149,7 +149,7 @@ public class TransmiterMapsActivity extends FragmentActivity implements OnMapRea
     protected void onResume() {
         super.onResume();
         if(hasPermission())
-            this.lMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 300, 3, (LocationListener) this);
+            this.lMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 300, 50, (LocationListener) this);
     }
 
     @Override
@@ -162,16 +162,16 @@ public class TransmiterMapsActivity extends FragmentActivity implements OnMapRea
     public void onLocationChanged(Location location) {
         if (isToggleChecked) {
             double distanceMoved = this.lastKnownLocationOfCar.distanceTo(location);
-            if (distanceMoved > 3) {
+            if (distanceMoved > 50) {
                 try {
                     Toast.makeText(getBaseContext(), "ALARM", Toast.LENGTH_SHORT).show();
-                    firebaseDBman.child("currentLatitude").setValue(location.getLatitude());
-                    firebaseDBman.child("currentLongitude").setValue(location.getLongitude());
                     firebaseDBman.child("isCarMoving").setValue(true);
                 } catch (Exception e) {
                     Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
+            firebaseDBman.child("currentLatitude").setValue(location.getLatitude());
+            firebaseDBman.child("currentLongitude").setValue(location.getLongitude());
             this.lastKnownLocationOfCar.setLongitude(location.getLongitude());
             this.lastKnownLocationOfCar.setLatitude(location.getLatitude());
             viewLocationOnMap(this.lastKnownLocationOfCar);

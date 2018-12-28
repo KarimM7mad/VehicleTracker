@@ -197,9 +197,6 @@ public class TransmiterForm extends AppCompatActivity {
             }
         });
 
-        this.userkeyEditTxt.setText("-LUV5xRBZ0Xaaj4DAmoq");
-        this.carkeyEditTxt.setText("-LUV5xRTalxZx5vJ97I0");
-
     }
 
 
